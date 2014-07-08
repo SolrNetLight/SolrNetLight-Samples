@@ -3,10 +3,7 @@ using SolrNetLight.Attributes;
 using SolrNetLight.Impl.FieldSerializers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolrNetLight.ConsoleApp
 {
@@ -26,7 +23,7 @@ namespace SolrNetLight.ConsoleApp
         public string FirstName { get; set; }
 
         [DataMember(Name = "roles")]
-        public string Roles { get; set; }
+        public List<string> Roles { get; set; }
 
         [DataMember(Name = "phone_")]
         [JsonConverter(typeof(DictionaryFieldJsonConverter))]
@@ -35,6 +32,7 @@ namespace SolrNetLight.ConsoleApp
         public CustomerIndex()
         {
             PhoneNumber = new Dictionary<String, String>();
+            Roles = new List<string>();
         }
     }
 }

@@ -18,16 +18,16 @@ namespace SolrNetLight.ConsoleApp
         }
 
         /// <summary>
-        /// Get Customer by Name
+        /// Get Customer by firstName
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public CustomerIndex GetCustomerByName(string name)
+        public CustomerIndex GetCustomerByName(string firstName)
         {
             CustomerIndex result = null;
             try
             {
-                var results = _customerSolRInstance.Query(new SolrQueryByField("name", name));
+                var results = _customerSolRInstance.Query(new SolrQueryByField("firstName", firstName));
                 if (results != null && results.Count > 0)
                 {
                     result = results[0];
@@ -52,19 +52,19 @@ namespace SolrNetLight.ConsoleApp
             {
                 var dlamande = new CustomerIndex
                 {
-                    Id = 1104,
+                    Id = 1000,
                     FirstName = "Dorian",
                     LastName = "Lamande",
-                    Roles = ".NET",
+                    Roles = new List<string> { ".NET" },
                     PhoneNumber = { new KeyValuePair<String, String>("mobile", "0123456789"), new KeyValuePair<String, String>("home", "0123456789") }
                 };
 
                 var gfabrizi = new CustomerIndex
                 {
-                    Id = 1105,
+                    Id = 1001,
                     FirstName = "Guillaume",
                     LastName = "Fabrizi",
-                    Roles = ".NET",
+                    Roles = new List<string> { ".NET" },
                     PhoneNumber = { new KeyValuePair<String, String>("mobile", "0123456789"), new KeyValuePair<String, String>("home", "0123456789") }
                 };
 
