@@ -22,12 +22,12 @@ namespace SolrNetLight.ConsoleApp
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public CustomerIndex GetCustomerByName(string firstName)
+        public async Task<CustomerIndex> GetCustomerByName(string firstName)
         {
             CustomerIndex result = null;
             try
             {
-                var results = _customerSolRInstance.Query(new SolrQueryByField("firstName", firstName));
+                var results = await _customerSolRInstance.Query(new SolrQueryByField("firstName", firstName));
                 if (results != null && results.Count > 0)
                 {
                     result = results[0];
@@ -46,7 +46,7 @@ namespace SolrNetLight.ConsoleApp
         /// <summary>
         /// Add new customers
         /// </summary>
-        public void AddCustomers()
+        public async Task AddCustomers()
         {
             try
             {
@@ -68,10 +68,10 @@ namespace SolrNetLight.ConsoleApp
                     PhoneNumber = { new KeyValuePair<String, String>("mobile", "0123456789"), new KeyValuePair<String, String>("home", "0123456789") }
                 };
 
-                _customerSolRInstance.Add(dlamande);
-                _customerSolRInstance.Add(gfabrizi);
+                await _customerSolRInstance.Add(dlamande);
+                await _customerSolRInstance.Add(gfabrizi);
               
-                _customerSolRInstance.Commit();
+                await _customerSolRInstance.Commit();
             }
             catch (Exception ex)
             {
